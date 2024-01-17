@@ -1,0 +1,27 @@
+<div class="row my-4">
+  @for(course of dataCourses; track course.id){
+  <div class="col-3 mb-4">
+      <div class="card">
+        <img class="card-img-top" [src]="course.img" alt="Title" />
+        <div class="card-body">
+          <h4 class="card-title">{{course.title}}</h4>
+          <div class="card-text">
+            <p>{{course.price}}</p>
+            <div class="text-end">
+              <button (click)="updateMethode(course)" class="btn btn-warning btn-sm me-1">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button (click)="course.id ? removeCorses(course.id) :''" class="btn btn-danger btn-sm me-1">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-sm"
+                [ngClass]="{'btn-info':course.status, 'btn-primary': !course.status}" (click)="changeStatusCourse(course)">
+                <i class="fa" [ngClass]="{ 'fa-check': course.status, 'fa-power-off': !course.status}" aria-hidden="true"></i>
+            </button>
+            </div>
+          </div >
+        </div>
+      </div>
+    </div>
+  }
+  </div>
