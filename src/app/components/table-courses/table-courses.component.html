@@ -21,10 +21,16 @@
             <td><img width="100px" [src]="course.img" alt=""></td>
             <td>{{course.price}}</td>
             <td class="text-end">
-              <button class="btn btn-warning btn-sm me-1">Edit</button>
-              @if(!!course.id) {
-                <button class="btn btn-danger btn-sm" (click)="removeCorses(course.id)">Delete</button>
-              }
+              <button (click)="updateMethode(course)" class="btn btn-warning btn-sm me-1">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button (click)="course.id ? removeCorses(course.id) :''" class="btn btn-danger btn-sm me-1">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-sm"
+                [ngClass]="{'btn-info':course.status, 'btn-primary': !course.status}" (click)="changeStatusCourse(course)">
+                <i class="fa" [ngClass]="{ 'fa-check': course.status, 'fa-power-off': !course.status}" aria-hidden="true"></i>
+            </button>
             </td>
           </tr>
         }

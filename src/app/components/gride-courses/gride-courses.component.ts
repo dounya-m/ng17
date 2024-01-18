@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Course } from '../../models/course';
 import { NgClass } from '@angular/common';
+import { CourseService } from '../../service/course.service';
 
 @Component({
   selector: 'app-gride-courses',
@@ -10,6 +11,8 @@ import { NgClass } from '@angular/common';
   styleUrl: './gride-courses.component.css'
 })
 export class GrideCoursesComponent {
+
+  coursesSErvice = inject(CourseService)
   @Input() dataCourses: Course[] = [];
   @Output() deleteCourse = new EventEmitter();
   @Output() updateCourse = new EventEmitter();

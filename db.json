@@ -1,19 +1,92 @@
 {
-  "posts": [
+  "courses": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "Qui omnis officiis ",
+      "img": "https://images.unsplash.com/photo-1705356151894-b1fd39861e3f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8fA%3D%3D",
+      "price": 671,
+      "description": "Incidunt dolor sunt",
+      "status": false,
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "Exercitation magnam ",
+      "img": "https://images.unsplash.com/photo-1705323111671-8bb38301d9f9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D",
+      "price": 641,
+      "description": "Et qui enim et ut il",
+      "status": false,
+      "id": 3
+    },
+    {
+      "title": "Sit totam ad quam qu",
+      "img": "https://images.unsplash.com/photo-1705447551093-7f1f038a313b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D",
+      "price": 347,
+      "description": "Velit velit et magn",
+      "status": false,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "title": "Course 5",
+      "img": "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D",
+      "price": 234,
+      "description": "Course description",
+      "status": true
+    },
+    {
+      "id": 6,
+      "title": "Course 6",
+      "img": "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D",
+      "price": 234,
+      "description": "Course description",
+      "status": true
+    },
+    {
+      "title": "Qui sint laudantium",
+      "img": "https://images.unsplash.com/photo-1682685796852-aa311b46f50d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D",
+      "price": 36,
+      "description": "Alias laudantium ni",
+      "status": true,
+      "id": "77dded17-84c5-463b-ad58-44e2a3c11d3f"
+    },
+    {
+      "title": "Officiis quae placea",
+      "img": "https://images.unsplash.com/photo-1682687220640-9d3b11ca30e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D",
+      "price": 327,
+      "description": "Voluptatum quis cons",
+      "status": false,
+      "id": "5de91600-1c4c-4a25-a0b6-d018a84c1792"
+    },
+    {
+      "title": "Consequatur quod om",
+      "img": "https://images.unsplash.com/photo-1682687220640-9d3b11ca30e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D",
+      "price": 989,
+      "description": "In id libero tempora",
+      "status": true,
+      "id": "dd031f9b-85ba-4797-8094-ec5808c16dec"
+    },
+    {
+      "title": "Deserunt aliquid sed",
+      "img": "https://images.unsplash.com/photo-1682687220640-9d3b11ca30e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D",
+      "price": 283,
+      "description": "Commodo praesentium ",
+      "status": false,
+      "id": "165a3c89-8016-424d-93a2-d0cce108afba"
+    },
+    {
+      "title": "Sit cupidatat obcae",
+      "img": "https://images.unsplash.com/photo-1682687220640-9d3b11ca30e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D",
+      "price": 8,
+      "description": "Consectetur est exp",
+      "status": true,
+      "id": "25efab04-6588-4a90-8821-0605487b969d"
+    },
+    {
+      "title": "Deserunt illo expedi",
+      "img": "https://images.unsplash.com/photo-1682686581556-a3f0ee0ed556?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8fA%3D%3D",
+      "price": 261,
+      "description": "Voluptatum numquam v",
+      "status": false,
+      "id": "ddbff278-6054-4d93-bcdb-cea04d4307d6"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 import { CourseService } from '../../service/course.service';
-import { Route } from 'react-router-dom';
 
 @Component({
   selector: 'app-courses',
@@ -21,17 +20,24 @@ export class CoursesComponent  {
   }
 
   courseServices = inject(CourseService)
-
+  courses: Course[] = [];
   toggleForm: boolean = false;
   gridList : boolean = false;
   editeModel : boolean = false;
+  ebavleDesable : boolean = false;
+  getStatus(value: boolean){
+    this.ebavleDesable = value
+    console.log(this.ebavleDesable);
+
+  }
   courseForme : Course = {
     title: '',
     img: '',
     price: 0,
     description: '',
-    status: true,
+    status: '',
   }
+
 
   changeToggleForm(){
     this.toggleForm = !this.toggleForm;
@@ -42,23 +48,51 @@ export class CoursesComponent  {
   }
   addMethode(){
     this.courseForme.id = uuidv4();
-    this.courses = [this.courseForme , ...this.courses ]
+    this.courseForme.status = this.ebavleDesable
+    // this.courses = [this.courseForme , ...this.courses ]
+    this.courseServices.postMethode(this.courseForme).subscribe(
+      (data)=>{
+        this.courses = data
+        window.location.reload()
+        console.log(data);
+      }
+    )
     this.initForm();
   }
+  initForm(){
+    this.courseForme  = {
+      title: '',
+      img: '',
+      price: 0,
+      description: '',
+      status: true,
+    }
 
-  updateForm(course: Course){
-    this.editeModel == true
-    this.courseForme = course
-    this.toggleForm = true;
   }
+
+  updateForm(course: Course) {
+    this.toggleForm = !this.toggleForm;
+    this.editeModel = true;
+    this.courseForme = course;
+  }
+
+
 
   updatCorse() {
-    this.initForm();
-    this.editeModel = false
-    this.toggleForm = false;
+    const singleCourse  = this.courseForme
+    singleCourse.status = this.ebavleDesable
+    this.courseServices.updateMethode(singleCourse.id, singleCourse).subscribe({
+      next: (response: any) => {
+        this.initForm();
+        this.toggleForm = false
+      },
+      error: (error: any) => {
+        console.error('Update error:', error);
+      }
+    });
   }
 
-  enabledediting(data: {id: number | string, status: boolean}) {
+enabledediting(data: {id: number | string, status: boolean}) {
     this.courses = this.courses.map(course => {
       if(course.id === data.id) {
         return {
@@ -69,16 +103,7 @@ export class CoursesComponent  {
       return course
     })
   }
-  initForm(){
-    this.courseForme  = {
-      title: '',
-      img: '',
-      price: 0,
-      description: '',
-      status: true,
-    }
-    this.toggleForm = !this.toggleForm;
-  }
+
 
   deleteCoursParent(id: any){
     console.log('deleteCoursParent', id);
@@ -92,7 +117,13 @@ export class CoursesComponent  {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.courses = this.courses.filter(course => course.id !== id)
+        this.courseServices.deleteMethode(id).subscribe({
+          next: () => {
+            this.courses = this.courses.filter(course => course.id !== id)
+            console.log('data are deleted');
+          }
+        })
+
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -109,7 +140,8 @@ export class CoursesComponent  {
   loadCorses(){
     this.courseServices.getMethode().subscribe({
       next: (data) =>{
-        console.log(data);
+        this.courses = data
+        console.log('hellooo',data);
       },
       error: (err) =>{
       },
@@ -117,56 +149,7 @@ export class CoursesComponent  {
     })
   }
 
-  courses: Course[] = [
-    {
-      id: 1,
-      title: 'Course 1',
-      img: 'https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D',
-      price: 234,
-      description: 'Course description',
-      status: true,
-    },
-    {
-      id: 2,
-      title: 'Course 2',
-      img: 'https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D',
-      price: 234,
-      description: 'Course description',
-      status: false,
-    },
-    {
-      id: 3,
-      title: 'Course 3',
-      img: 'https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D',
-      price: 234,
-      description: 'Course description',
-      status: true,
-    },
-    {
-      id: 4,
-      title: 'Course 4',
-      img: 'https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D',
-      price: 234,
-      description: 'Course description',
-      status: true,
-    },
-    {
-      id: 5,
-      title: 'Course 5',
-      img: 'https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D',
-      price: 234,
-      description: 'Course description',
-      status: false,
-    },
-    {
-      id: 6,
-      title: 'Course 6',
-      img: 'https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tJTIwb2JqZWN0c3xlbnwwfHwwfHx8MA%3D%3D',
-      price: 234,
-      description: 'Course description',
-      status: true,
-    },
-  ];
+
 
 
 }

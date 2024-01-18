@@ -4,5 +4,5 @@ export interface Course {
   img: string;
   price: number;
   description: string;
-  status : boolean;
+  status : boolean | string;
 }

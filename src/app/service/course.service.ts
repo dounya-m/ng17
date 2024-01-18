@@ -15,11 +15,15 @@ export class CourseService {
     return this.http.get<Course[]>(this.apiUrl)
   }
 
-  postMethode(data: any){
-    this.http.post(this.apiUrl, data)
+  postMethode(data: Course):  Observable<any>{
+    return this.http.post(this.apiUrl, data);
   }
-  UpdateMethode(id: any, data: any){
-    this.http.post(this.apiUrl+'/'+id, data)
+  updateMethode(id: any, data: any): Observable<any>{
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+
+  deleteMethode(id: any): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/${id}`)
   }
 
 }
