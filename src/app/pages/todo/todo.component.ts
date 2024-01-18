@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2'
 
@@ -12,15 +12,15 @@ import Swal from 'sweetalert2'
 export class TodoComponent {
 
   title = "";
-  todos = ['learn angular', 'javascript', 'typescript for oop']
+  todos = signal(['learn angular', 'javascript', 'typescript for oop'])
 
   addTodo() {
     // this.todos.unshift(this.title)
 
-    this.todos = [this.title, ...this.todos]
+    this.todos.update(currenttodo => [...currenttodo ,this.title])
     this.title = ""
   }
-  deleteElement(index: number){
+  deleteElement(titel: string){
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -31,7 +31,7 @@ export class TodoComponent {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        this.todos.splice(index, 1)
+        this.todos.update(result => result.filter(todo => todo !== titel))
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
